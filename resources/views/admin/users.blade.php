@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container my-4">
-        <form action="{{ route('admin-shows') }}">
+        <form action="{{ route('users') }}">
             <div class="input-group mb-3">
                 <input value="{{ $search ?? old('search') }}" type="text" name="search" class="form-control"
                     placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -18,41 +18,34 @@
                     <option value="Completed">Completed</option>
                 </select>
             </div>
-            <form action="{{ route('createshow') }}">
-                <button class="btn btn-primary">Create new show</button>
-            </form>
         </div>
         <div style="width: 100%; overflow: auto">
             <table class="text-light table rounded">
                 <thead>
                     <tr>
-                        <th scope="col">Image</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Role</th>
                         <th scope="col" style="text-align: end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($shows as $show)
+                    @foreach ($users as $user)
                         <tr>
-                            <td scope="row" style="width: 150px">
-                                <div class="list-img rounded">
-                                    <img class="list-img rounded" src="{{ $show->image }}" alt="No Image">
-                                </div>
+                            <td scope="row">{{ $user->name }}
                             </td>
-                            <td scope="row" class="w-100 text-ellipsis">{{ $show->name }}
-                            </td>
-                            <td scope="row" style="width: 250px">{{ $show->status ? 'Ongoing' : 'Finished' }}</td>
-                            <td scope="row" style="width: max-content">
-                                <div class="d-flex">
-                                    <form action="{{ route('show', $show) }}" method="POST">
+                            <td style="color: {{ $user->isadmin ? 'red' : '' }}" scope="row">
+                                {{ $user->isadmin ? 'Admin' : 'User' }}</td>
+                            <td scope="row">
+                                <div class="d-flex justify-content-end">
+                                    <form action="{{ route('deleteUser', $user) }}" method="POST">
                                         @csrf
                                         @method("DELETE")
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
-                                    <form action="{{ route('createshow') }}" method="get">
-                                        <input type="hidden" name='id' value="{{ $show->id }}">
-                                        <button type="submit" class="btn btn-warning ms-2">Edit</button>
+                                    <form action="{{ route('makeAdmin', $user) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" style="width: 200px"
+                                            class="btn {{ $user->isadmin ? 'btn-warning' : 'btn-info' }} ms-2">{{ $user->isadmin ? 'Make user' : 'Make admin' }}</button>
                                     </form>
                                 </div>
                             </td>
@@ -61,7 +54,7 @@
                 </tbody>
             </table>
             <div class="d-flex justify-content-center">
-                {{ $shows->links() }}
+                {{ $users->links() }}
             </div>
         </div>
     </div>

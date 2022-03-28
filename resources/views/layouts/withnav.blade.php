@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
+
     <title>Dashboard</title>
 </head>
 
@@ -33,6 +35,11 @@
                                 <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
                             </li>
                         @endauth
+                        @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">Login</a>
+                            </li>
+                        @endguest
                     </ul>
                 </div>
             </div>
@@ -40,7 +47,7 @@
     </div>
     @yield('content')
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

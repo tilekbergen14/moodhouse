@@ -2,14 +2,10 @@
 @section('content')
     <div class="text-light dashboard container py-4">
         <div class="row">
-            <div class="col-sm-12 my-2 text-dark">
-                <div class="profile-img-box mb-4 d-flex m-auto">
-                    <img class="h-100 w-100 rounde" src="/images/thumbnails/1647698310tanjiro.jpg" alt="Image">
+            <div class="col-sm-12 text-dark my-2">
+                <div id="profile-img">
                 </div>
-                <div class="input-group mb-2">
-                    <input name='image' type="file" class="form-control" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                </div>
+
                 <div class="form-floating">
                     <input type="text" class="form-control mb-2" placeholder="Your name" name="name"
                         value={{ old('name') }}>
@@ -32,14 +28,14 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-info my-4 w-100">
+                    <button class="btn btn-info w-100 my-4">
                         Edit
                     </button>
                 </div>
                 <hr class="bg-danger">
                 <form action="{{ route('logout') }}" method="POST" class="d-flex justify-content-end">
                     @csrf
-                    <button class="btn btn-danger my-4 w-100">
+                    <button class="btn btn-danger w-100 my-4">
                         Log out
                     </button>
                 </form>

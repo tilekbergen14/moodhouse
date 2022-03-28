@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use App\Models\Show;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File; 
@@ -21,14 +22,29 @@ class AdminController extends Controller
             return $next($request);
         });
     }
-    public function index()
+    public function users(Request $request)
     {
-        return view('admin.index');
+        $users = null;
+        $search = $request->search ?? null;
+        if($search){
+            $users = User::query()->where('name', 'like', "%$request->search%")->paginate(10);
+        }else{
+            $users = User::paginate(10);
+        }
+        return view('admin.users', ["users" => $users, "search" => $search]);
     }
-    public function shows()
+
+    public function shows(Request $request)
     {
-        $shows = Show::paginate(10);
-        return view('admin.shows', ["shows" => $shows]);
+        $shows = null;
+        $search = $request->search ?? null;
+        if($search){
+            $shows = Show::query()->where('name', 'like', "%$request->search%")->paginate(10);
+        }else{
+            $shows = Show::paginate(10);
+        }
+       
+        return view('admin.shows', ["shows" => $shows, "search" => $search]);
     }
     public function createshowpost(Request $request)
     {
@@ -82,5 +98,18 @@ class AdminController extends Controller
             $show = Show::find($request->id);
         }
         return view('admin.createshow', ["genres" => $genres, "show" => $show]);
+    }
+    public function deleteUser(User $user){
+        $user->delete();
+        return back();
+    }
+    public function makeAdmin(User $user){
+        if( !$user->isadmin){
+            $user->isadmin = true;
+        }else{
+            $user->isadmin = false;
+        }
+        $user->save();
+        return back();
     }
 }

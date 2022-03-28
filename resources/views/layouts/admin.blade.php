@@ -23,16 +23,10 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route("admin")}}">Dashboard</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin-shows') }}">Shows</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route("admin-shows")}}">Shows</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{route("admin-shows")}}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="./createmovie.php">Episodes</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('users') }}">Users</a>
                         </li>
                     </ul>
                 </div>
@@ -41,6 +35,7 @@
     </div>
     @yield('content')
     <script src="{{ asset('js/multi-select.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 </body>
 

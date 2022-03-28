@@ -1,16 +1,9 @@
 @extends('layouts.withnav')
 @section('content')
-    <div class="text-light container my-4">
-        <div class="show-hero"> <img class="rounded" src="{{ $show->image }}" alt="profile"
-                style="width: 100%; aspect-ratio: 16 / 9">
-        </div>
-        {{-- <div class="row">
-            <div class="col-4">
-                <img class="rounded" src="{{ $show->image }}" alt="profile"
-                    style="width: 100%; aspect-ratio: 9/ 12">
-
-            </div>
-            <div class="col-8">
+    <div class="text-light">
+        <div class="show-hero">
+            <img class="show-profile rounded" src="{{ $show->image }}" alt="profile">
+            <div class="show-hero-info">
                 <h4 class="card-title font-weight-bold">{{ $show->name }}</h4>
                 <p class="secondary-text">{{ $show->description }}</p>
                 <p><span class="card-title">Genres: </span><span class="secondary-text">{{ $show->genres }}</span></p>
@@ -20,10 +13,41 @@
                 </p>
                 <p><span class="card-title">Version: </span><span class="secondary-text">{{ $show->version }}</span>
                 </p>
-                <h3 class="card-title font-weight-bold mt-2">Leave your comment!</h3>
-                <textarea style="width: 100%" name="" id="" cols="30" rows="10"></textarea>
-                <button class="btn btn-warning w-100 mt-2">Comment</button>
+                <h5 class="card-title font-weight-bold mt-2">Leave your comment!</h5>
+                <form action="{{ route('comment', $show) }}" method="POST">
+                    @csrf
+                    <textarea value="{{ old('value') }}" style="width: 100%" name="body" id="" cols="30" rows="10"></textarea>
+                    <button class="btn btn-warning w-100 my-2">Comment</button>
+                </form>
+                <hr>
+                <div class="comment-body">
+                    @foreach ($show->comments as $comment)
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex align-items-center mb-3">
+                                <img src="" alt="{{ $comment->user->name[0] }}" class="comment-user-profile">
+                                <div>
+                                    <p class="title-blue m-0">{{ $comment->user->name }}</p>
+                                    <p class="text-muted m-0">
+                                        {{ $comment->created_at->diffForHumans() }}
+                                    </p>
+                                </div>
+                            </div>
+                            @auth
+                                @if ($comment->user->id === auth()->user()->id)
+                                    <form action="{{ route('comment', $comment) }}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button
+                                            class="fa-solid fa-trash text-danger c-pointer m-2 border-0 bg-transparent"></button>
+                                    </form>
+                                @endif
+                            @endauth
+                        </div>
+                        <p class="fst-italic fw-light m-0">{{ $comment->body }}</p>
+                        <hr>
+                    @endforeach
+                </div>
             </div>
-        </div> --}}
+        </div>
     </div>
 @endsection
