@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
-    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
-
     <title>Dashboard</title>
 </head>
 
@@ -16,7 +14,7 @@
     <div style=" height: 78px">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid d-flex justify-content-between">
-                <a class="navbar-brand flex-1" href="./index.php">MoodHouse</a>
+                <a class="navbar-brand flex-1" href="{{ route('home') }}">MoodHouse</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -24,12 +22,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="">Explore</a>
-                        </li>
+                        </li> --}}
+                        {{-- @auth
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="./createmovie.php">Your favs</a>
                         </li>
+                        @endauth --}}
                         @auth
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
@@ -46,8 +46,7 @@
         </nav>
     </div>
     @yield('content')
-    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('./js/app.js') }}"></script>
 </body>
 
 </html>

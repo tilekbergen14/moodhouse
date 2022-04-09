@@ -26,7 +26,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _data_profiles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../data/profiles */ "./resources/js/data/profiles.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -44,7 +51,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function Profile() {
+
+function Profile(props) {
+  var _props$profile;
+
   var handleModal = function handleModal() {
     setModalopen(function (modalopen) {
       return !modalopen;
@@ -56,88 +66,69 @@ function Profile() {
       modalopen = _useState2[0],
       setModalopen = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)((_props$profile = props.profile) !== null && _props$profile !== void 0 ? _props$profile : null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      profile = _useState4[0],
+      setProfile = _useState4[1];
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
     className: "profile-img-box mb-4 d-flex m-auto",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+      type: "hidden",
+      name: "profile",
+      value: profile
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "modal",
       tabIndex: "-1",
       role: "dialog",
       style: {
         display: modalopen ? "grid" : "none"
       },
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "modal-dialog",
         role: "document",
         style: {
-          maxWidth: "418px"
+          width: "auto",
+          maxWidth: "auto"
         },
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "modal-content",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
             className: "modal-header",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h5", {
               className: "modal-title",
               children: "Modal title"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
               type: "button",
               className: "close btn btn-info",
               "data-dismiss": "modal",
               "aria-label": "Close",
               onClick: handleModal,
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 "aria-hidden": "true",
                 children: "\xD7"
               })
             })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
             className: "modal-body",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
-              className: "small-profile rounded c-pointer",
-              src: "/images/profiles/tanjiro.jpg",
-              alt: "Image"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-            className: "modal-footer"
+            children: _data_profiles__WEBPACK_IMPORTED_MODULE_2__["default"].map(function (e, index) {
+              return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+                onClick: function onClick() {
+                  return setProfile(e.src);
+                },
+                className: "small-profile round c-pointer ".concat(profile === e.src && "choosen"),
+                src: "".concat(e.src),
+                alt: "Image"
+              }, index);
+            })
           })]
         })
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("img", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
       onClick: handleModal,
-      className: "h-100 w-100 round c-pointer",
-      src: "/images/profiles/tanjiro.jpg",
-      alt: "Image"
+      className: "h-100 w-100 round c-pointer text-light",
+      src: profile,
+      alt: "Choose avatar"
     })]
   });
 }
@@ -145,8 +136,9 @@ function Profile() {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Profile);
 
 if (document.getElementById("profile-img")) {
-  console.log("heye");
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Profile, {}), document.getElementById("profile-img"));
+  var element = document.getElementById("profile-img");
+  var props = Object.assign({}, element.dataset);
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(Profile, _objectSpread({}, props)), document.getElementById("profile-img"));
 }
 
 /***/ }),
@@ -195,6 +187,52 @@ function Search() {
 if (document.getElementById('search')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Search, {}), document.getElementById('search'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/data/profiles.js":
+/*!***************************************!*\
+  !*** ./resources/js/data/profiles.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var profiles = [{
+  src: "/images/profiles/bakugo.jpg"
+}, {
+  src: "/images/profiles/deku.jpg"
+}, {
+  src: "/images/profiles/denji.jpg"
+}, {
+  src: "/images/profiles/edward.png"
+}, {
+  src: "/images/profiles/feitan.jpg"
+}, {
+  src: "/images/profiles/power.jpg"
+}, {
+  src: "/images/profiles/yuji.jpg"
+}, {
+  src: "/images/profiles/ayanakoji.jpg"
+}, {
+  src: "/images/profiles/inosuke.jpg"
+}, {
+  src: "/images/profiles/shigaraki.jpg"
+}, {
+  src: "/images/profiles/tomioka.jpg"
+}, {
+  src: "/images/profiles/yuta.jpg"
+}, {
+  src: "/images/profiles/zoro.jpg"
+}, {
+  src: "/images/profiles/toshiro.jpg"
+}, {
+  src: "/images/profiles/chrollo.jpg"
+}];
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (profiles);
 
 /***/ }),
 

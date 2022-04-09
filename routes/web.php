@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\ShowController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,6 +22,12 @@ Route::post('/register', [RegisterController::class, "store"]);
 Route::get('/admin', [AdminController::class, "shows"])->name("admin");
 Route::get('/admin/createshow', [AdminController::class, "createshowget"])->name("createshow");
 Route::post('/admin/createshow', [AdminController::class, "createshowpost"])->name("createshow");
+
+
+Route::get('/admin/episodes', [EpisodeController::class, "index"])->name("episodes");
+Route::get('/admin/createepisode', [EpisodeController::class, "createep_get"])->name("createepisode");
+Route::post('/admin/createepisode', [EpisodeController::class, "createep_post"])->name("createepisode");
+
 
 Route::get('/admin/shows', [AdminController::class, "shows"])->name("admin-shows");
 Route::get('/admin/users', [AdminController::class, "users"])->name("users");
@@ -39,6 +46,7 @@ Route::delete('/show/{id}', [ShowController::class, "delete"]);
 Route::post('/comment/{show}', [CommentController::class, "store"])->name("comment");
 Route::delete('/comment/{comment}', [CommentController::class, "delete"]);
 
+Route::put('/user-update/{user}', [UserController::class, "update"])->name("user-update");
 
 Route::get('/', [HomeController::class, "index"])->name("home");
 // Route::post('/', [HomeController::class, "indexpost"]); About genres

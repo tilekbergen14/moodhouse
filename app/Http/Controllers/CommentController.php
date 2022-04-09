@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 class CommentController extends Controller
 {
     public function store(Show $show, Request $request){
+        if(!$request->user()){
+            return redirect()->route("login");
+        }
         $show->comments()->create([
             "body" => $request->body,
             "user_id" => $request->user()->id

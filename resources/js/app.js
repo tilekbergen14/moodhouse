@@ -1,2 +1,2 @@
-require('./components/Search');
-require('./components/Profile');
+require("./components/Search");
+require("./components/Profile");

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="vh-100 d-flex justify-content-center align-items-center">
+        <canvas id="canvas1"></canvas>
         <div class="container bg-light p-2 rounded" style="max-width: 500px">
             <form action="{{ route('login') }}" method='POST' class="text-center">
                 @csrf
@@ -35,7 +36,7 @@
                     </label>
                 </div>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
-                <div class="my-2">Don't have an account? <a href="{{ route('register') }}">Sign up</a></div>
+                <div class="my-2">Don't have an account? <a class="text-primary" href="{{ route('register') }}">Sign up</a></div>
             </form>
         </div>
     </div>
