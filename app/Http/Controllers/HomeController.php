@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Genre;
 use App\Models\Show;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $shows = Show::orderBy("created_at", "desc")->limit(12)->get();
+        $episodes = Episode::orderBy("created_at", "desc")->paginate(18);
         $genres = Genre::get();
-        return view("welcome", ["shows" => $shows, "genres" => $genres]);
+        $shows = Show::get();
+        return view("welcome", ["episodes" => $episodes, "genres" => $genres, "shows" => $shows]);
     }
     // public function indexpost(Request $request)
     // {

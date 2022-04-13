@@ -27,7 +27,7 @@ Route::post('/admin/createshow', [AdminController::class, "createshowpost"])->na
 Route::get('/admin/episodes', [EpisodeController::class, "index"])->name("episodes");
 Route::get('/admin/createepisode', [EpisodeController::class, "createep_get"])->name("createepisode");
 Route::post('/admin/createepisode', [EpisodeController::class, "createep_post"])->name("createepisode");
-
+Route::delete('/admin/episodes/{id}', [EpisodeController::class, "delete"])->name("episode_delete");
 
 Route::get('/admin/shows', [AdminController::class, "shows"])->name("admin-shows");
 Route::get('/admin/users', [AdminController::class, "users"])->name("users");

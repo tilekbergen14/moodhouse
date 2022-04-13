@@ -29,7 +29,7 @@
                             <a class="nav-link" aria-current="page" href="{{ route('users') }}">Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('createepisode') }}">Episodes</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('episodes') }}">Episodes</a>
                         </li>
                     </ul>
                 </div>

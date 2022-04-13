@@ -90,6 +90,7 @@ class AdminController extends Controller
         ]);
         return back();
     }
+    
     public function createshowget(Request $request)
     {
         $genres = Genre::get();

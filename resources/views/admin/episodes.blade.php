@@ -1,39 +1,69 @@
 @extends('layouts.admin')
 @section('content')
     <div class="container my-4">
-        <h4 class="text-light font-weight-bold text-center">Create new episode!</h4>
-        <form method="post" enctype="multipart/form-data" action="{{ route('createepisode') }}">
-            @csrf
-            <input type="hidden" name="id" value="{{ $episode->id ?? null }}">
+        <form action="{{ route('episodes') }}">
             <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupSelect01">Status</label>
-                <select value="" name='status' class="form-select" id="inputGroupSelect01">
-                    <option {{ $episode && $episode->status === 1 ? 'selected' : '' }} value="1">Ongoing</option>
-                    <option {{ $episode && $episode->status === 0 ? 'selected' : '' }} value="0">Finished</option>
+                <label class="input-group-text" for="inputGroupSelect01">Show</label>
+                <select name='show_id' class="form-select" id="inputGroupSelect01">
+                    <option value={{ null }}>
+                        All</option>
+                    @foreach ($shows as $show)
+                        <option {{ $search === $show->id ? 'selected' : '' }} value={{ $show->id }}>
+                            {{ $show->name }} </option>
+                    @endforeach
                 </select>
+                <button type="submit" class="btn btn-warning ms-2">Search</button>
             </div>
-            @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div class="input-group my-3 flex-nowrap">
-                <span class="input-group-text" id="addon-wrapping">Name</span>
-                <input value="{{ $episode ? $episode->name : old('name') }}" name='name' type="text" class="form-control"
-                    placeholder="Name" aria-label="Name" aria-describedby="addon-wrapping">
-            </div>
-            @if ($episode && $episode->image)
-                <input type="hidden" value="{{ $episode->image }}" name="existedImage">
-                <img src="{{ $episode->image }}" class="uploaded-img mb-4" alt="{{ $episode->name }}">
-            @endif
-            @error('image')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            <div class="input-group mb-3 flex-nowrap">
-                <input type="file" class="form-control" id="file" name="image" />
-                <label style="width: 120px" class="input-group-text"
-                    for="inputGroupFile02">{{ $episode && $episode->image ? 'New image' : 'Image' }}</label>
-            </div>
-
-            <button type="submit" class="btn btn-info w-100">{{ $episode ? 'Edit' : 'Add new' }}</button>
         </form>
+        <div class="d-flex justify-content-between mb-3" style="height: 35px">
+            <div class="input-group" style="width: auto">
+
+            </div>
+            <form action="{{ route('createepisode') }}">
+                <button class="btn btn-primary">Create new episode</button>
+            </form>
+        </div>
+        <div style="width: 100%; overflow: auto">
+            <table class="text-light table rounded">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col" style="text-align: end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($episodes as $episode)
+                        <tr>
+                            <td scope="row" style="width: 150px">
+                                <div class="list-img rounded">
+                                    <img class="list-img rounded" src="{{ $episode->parent()->image }}" alt="No Image">
+                                </div>
+                            </td>
+                            <td scope="row" class="w-100 text-ellipsis">{{ $episode->parent()->name }}
+                                EP{{ $episode->episode }}
+                            </td>
+
+                            <td scope="row" style="width: max-content">
+                                <div class="d-flex">
+                                    <form action="{{ route('episode_delete', $episode) }}" method="POST">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                    <form action="{{ route('createepisode') }}" method="get">
+                                        <input type="hidden" name='id' value="{{ $episode->id }}">
+                                        <button type="submit" class="btn btn-warning ms-2">Edit</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                {{ $episodes->links() }}
+            </div>
+        </div>
     </div>
 @endsection

@@ -136,12 +136,21 @@ body {
 
 .info-box {
     padding: 0 8px;
-    background-color: rgba(0, 0, 0, 0.6);
-}
-.info-box-left {
-    color: var(--cyan);
+    background-color: var(--green);
+    color: #fff;
 }
 
+.info-box-left{
+    background-color: var(--red);
+    color: #fff;
+}
+.card-big-title {
+    background: linear-gradient(to right, var(--green), var(--blue));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    width: max-content;
+}
 .card-title {
     background: linear-gradient(to right, var(--red), var(--blue));
     -webkit-background-clip: text;
@@ -151,6 +160,24 @@ body {
 .card-title:hover {
     text-shadow: 0px 0px 10px #00f0ff;
     cursor: pointer;
+}
+.episodes{
+    display: flex;
+}
+.episode-box{
+    border: none;
+    background-color: var(--green);
+    padding: 4px 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    filter: brightness(0.5)
+}
+.video-box{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+.active{
+    filter: brightness(1)
 }
 /**************left-side***************/
 .left-side {

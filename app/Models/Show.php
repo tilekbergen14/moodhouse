@@ -23,4 +23,9 @@ class Show extends Model
     {
         return $this->hasMany(Comment::class);
     }
+    public function episodes()
+    {
+        $episodes = $this->hasMany(Episode::class);
+        return $episodes;
+    }
 }

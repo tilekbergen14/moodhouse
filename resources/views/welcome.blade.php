@@ -20,7 +20,7 @@
             </div>
         </nav>
         <div class='welcome'>
-            @component('components.slider', ['shows' => $shows])
+            @component('components.slider', ['contents' => $shows])
             @endcomponent
         </div>
     </div>
@@ -35,21 +35,23 @@
                 </a>
             </div>
             <div class="row m-0">
-                @if (session('shows'))
-                    @foreach (session('shows') as $show)
-                        @component('components.card', ['show' => $show])
-                            {{ $show }}
+                @if (session('episodes'))
+                    @foreach (session('episodes') as $episode)
+                        @component('components.card', ['content' => $episode])
+                            {{ $episode }}
                         @endcomponent
                     @endforeach
                 @else
-                    @foreach ($shows as $show)
-                        @component('components.card', ['show' => $show])
-                            {{ $show }}
+                    @foreach ($episodes as $episode)
+                        @component('components.card', ['content' => $episode])
+                            {{ $episode }}
                         @endcomponent
                     @endforeach
                 @endif
             </div>
-
+            <div class="d-flex justify-content-center">
+                {{ $episodes->links() }}
+            </div>
         </div>
         {{-- <div class="right-side text-light">
             <p class="title tablet-none">Filter</p>
@@ -58,11 +60,11 @@
                 <div class="d-flex">
                     <div class="flex-fill">
                         <p class="text-info mb-1">Genres</p>
-   
+
                         @foreach ($genres as $genre)
-                            
-                            <input type="checkbox" id="romance" value="{{$genre->genre}}" @if (is_array(old('cgenres')) && in_array($genre->genre, old('cgenres'))) checked @endif name="cgenres[]">
-                            <label for="romance">{{$genre->genre}}</label><br>
+                            <input type="checkbox" id="romance" value="{{ $genre->genre }}"
+                                @if (is_array(old('cgenres')) && in_array($genre->genre, old('cgenres'))) checked @endif name="cgenres[]">
+                            <label for="romance">{{ $genre->genre }}</label><br>
                         @endforeach
                     </div>
                 </div>

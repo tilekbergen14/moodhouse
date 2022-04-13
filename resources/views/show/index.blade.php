@@ -5,7 +5,7 @@
             <img class="show-profile rounded" src="{{ $show->image }}" alt="profile">
             <div class="show-hero-info">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h4 class="card-title font-weight-bold">{{ $show->name }}</h4>
+                    <h4 class="card-big-title font-weight-bold">{{ $show->name }}</h4>
                     {{-- <button class="btn btn-danger">Add to Favs</button> --}}
                 </div>
                 <p class="secondary-text">{{ $show->description }}</p>
@@ -16,8 +16,26 @@
                 </p>
                 <p><span class="card-title">Version: </span><span class="secondary-text">{{ $show->version }}</span>
                 </p>
-                <h5 class="card-title font-weight-bold mt-2">Leave your comment!</h5>
-
+                @if ($ep)
+                    <?php
+                    $ep = $ep - 1;
+                    ?>
+                    @if ($show->episodes[$ep])
+                        <iframe class="video-box" src="{{ $show->episodes[$ep]->video }}" frameborder="0"></iframe>
+                    @endif
+                    {{-- <h5 class="card-big-title font-weight-bold my-3">Episodes!</h5> --}}
+                    <div class="episodes">
+                        @foreach ($show->episodes->sortBy('episode') as $episode)
+                            <form>
+                                <input type="hidden" name="ep" value="{{ $episode->episode }}">
+                                <button class="episode-box {{ intval($ep + 1) === $episode->episode ? 'active' : '' }}">
+                                    EP {{ $episode->episode }}
+                                </button>
+                            </form>
+                        @endforeach
+                    </div>
+                @endif
+                <h5 class="card-big-title font-weight-bold my-3">Leave your comment!</h5>
                 <form action="{{ route('comment', $show) }}" method="POST">
                     @csrf
                     <textarea value="{{ old('value') }}" style="width: 100%" name="body" id="" cols="30" rows="10"></textarea>
@@ -25,13 +43,14 @@
                         Comment
                     </button>
                 </form>
-  
+
                 <hr>
                 <div class="comment-body">
                     @foreach ($show->comments as $comment)
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="d-flex align-items-center mb-3">
-                                <img src="{{ $comment->user->profile}}" alt="{{ $comment->user->name[0] }}" class="comment-user-profile">
+                                <img src="{{ $comment->user->profile }}" alt="{{ $comment->user->name[0] }}"
+                                    class="comment-user-profile">
                                 <div>
                                     <p class="title-blue m-0">{{ $comment->user->name }}</p>
                                     <p class="text-muted m-0">
