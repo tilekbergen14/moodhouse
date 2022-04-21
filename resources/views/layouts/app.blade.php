@@ -11,17 +11,19 @@
 </head>
 <style>
     #canvas1 {
-      position: absolute;
-      height: 100%;
-      top: 0;
-      filter: blur(16px);
-      background-color: #080f24;
-      width: 100%;
-      z-index: -1;
+        position: absolute;
+        height: 100%;
+        top: 0;
+        filter: blur(16px);
+        background-color: #080f24;
+        width: 100%;
+        z-index: -1;
     }
+
 </style>
+
 <body>
-    
+
     @yield('content')
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('app.js') }}"></script>
