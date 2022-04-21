@@ -1,15 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&family=Poppins:wght@200;300;400;800&display=swap");
 :root {
-    --deep-background: #080f24;
+    --deep-background: #000000;
     --dbg-whiter: #141f40;
-    --red: #ff034a;
-    --cyan: #00f0ff;
-    --blue: #0c8cfe;
+    --main-text: #fff;
+    --danger: #ff1f5a;
+    --secondary: #22d1ee;
+    --primary: #3d5af1;
     --purple: #8400ff;
-    --green: #06d6a0;
+    --success: #06d6a0;
     --secondary-text: #efefef;
     --show-bg: rgba(0, 0, 0, 0.7);
-    --primary-text: #fff;
 }
 * {
     box-sizing: border-box;
@@ -35,21 +35,26 @@ body {
     top: 0;
     position: fixed;
     z-index: -1;
-    filter: brightness(0.3);
+    filter: brightness(0.4);
     object-fit: cover;
     width: 100%;
 }
 .navbar {
-    border-bottom: 4px solid var(--red);
+    border-bottom: 2px solid var(--success);
     background-color: var(--deep-background);
 }
 .navbar-brand {
     font-size: 32px;
     font-weight: 800;
-    background: linear-gradient(to right, var(--red), var(--cyan));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--success) !important;
+}
+.btn-primary{
+    background-color: var(--success) !important;
+    border: var(--success);
+}
+.btn-danger{
+    background-color: var(--danger) !important;
+    border: var(--danger);
 }
 .welcome {
     top: 0;
@@ -59,24 +64,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     z-index: 1;
+    color: #fff;
+    padding: 24px;
 }
-.welcome-text {
+.welcome-text{
     max-width: 700px;
+    text-align: center;
 }
-.welcome-title {
-    color: white;
-    font-size: 64px;
-    font-weight: bold;
-    background: linear-gradient(to right, var(--blue), var(--cyan));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.welcome-text > h1{
+    font-size: 4rem;
 }
-.welcome-p {
-    color: white;
+.welcome-text > p{
+    font-size: 20px;
+
 }
+
 @media screen and (max-width: 992px) {
     .welcome-title {
         font-size: 44px;
@@ -94,79 +97,22 @@ body {
     background-color: var(--deep-background);
 }
 /************ card **************/
-.cu-card {
-    position: relative;
+.card-title{
+    color: var(--deep-background);
 }
-.cu-card-header:hover {
-    box-shadow: 0px 0px 10px #00f0ff;
-    cursor: pointer;
+.card-text{
+    color: var(--deep-background);
 }
-.cu-card-header {
+.card-img-top{
     width: 100%;
-    aspect-ratio: 9 / 12;
-    background: linear-gradient(
-        45deg,
-        #0c8cfe,
-        #ea3329,
-        #ffd321,
-        #8400ff,
-        #00f0ff
-    );
-    display: grid;
-    place-items: center;
-}
-.card-relative {
-    aspect-ratio: 9 / 12;
-    width: calc(100% - 4px);
-    position: relative;
-    background-color: var(--red);
-}
-.card-relative > img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-.card-infos {
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.info-box {
-    padding: 0 8px;
-    background-color: var(--green);
-    color: #fff;
-}
-
-.info-box-left{
-    background-color: var(--red);
-    color: #fff;
-}
-.card-big-title {
-    background: linear-gradient(to right, var(--green), var(--blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    width: max-content;
-}
-.card-title {
-    background: linear-gradient(to right, var(--red), var(--blue));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-.card-title:hover {
-    text-shadow: 0px 0px 10px #00f0ff;
-    cursor: pointer;
+    aspect-ratio: 1 / 1;
 }
 .episodes{
     display: flex;
 }
 .episode-box{
     border: none;
-    background-color: var(--green);
+    background-color: var(--success);
     padding: 4px 8px;
     margin-right: 8px;
     cursor: pointer;
@@ -218,7 +164,7 @@ body {
     position: absolute;
     border-radius: 16px;
     transition: all ease-out 0.2s;
-    background-color: #ff034a;
+    background-color: var(--danger);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -320,7 +266,7 @@ body {
 }
 .list-img {
     height: 50px;
-    background-color: var(--green);
+    background-color: var(--success);
     object-fit: cover;
     display: flex;
     align-items: center;
@@ -338,7 +284,7 @@ th {
     aspect-ratio: 16 / 9;
     position: relative;
     border-radius: 16px;
-    border: 2px solid var(--green);
+    border: 2px solid var(--success);
 }
 .profile-img-box > img {
     border-radius: 16px;
@@ -348,7 +294,7 @@ th {
 }
 /*************utilities****************/
 a {
-    color: white;
+    color: var(--main-text);
     text-decoration: none;
 }
 img {
@@ -367,7 +313,7 @@ img {
     width: 100%;
     object-fit: cover;
     aspect-ratio: 16 / 9;
-    background-color: var(--green);
+    background-color: var(--success);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,15 +338,15 @@ textarea {
 }
 .flex {
     display: flex;
-    background-color: #fff;
+    background-color: var(--main-text);
     padding: 4px;
     border-radius: 4px;
     flex-wrap: wrap;
 }
 .badge {
-    background-color: dodgerblue;
+    background-color: var(--primary);
     width: max-content;
-    color: #fff;
+    color: var(--main-text);
     padding: 4px 8px;
     margin: 2px;
     border-radius: 4px;
@@ -424,7 +370,7 @@ textarea {
     height: 3px;
     width: 12px;
     border-radius: 4px;
-    background-color: #fff;
+    background-color: var(--main-text);
     position: absolute;
 }
 .line1 {
@@ -434,7 +380,7 @@ textarea {
     transform: rotate(-45deg);
 }
 .select-list {
-    background-color: #fff;
+    background-color: var(--main-text);
     margin-top: 4px;
     border-radius: 4px;
     display: none;
@@ -454,8 +400,8 @@ textarea {
     display: none;
 }
 .select-element:hover {
-    background-color: dodgerblue;
-    color: white;
+    background-color: var(--primary);
+    color: var(--main-text);
     cursor: pointer;
 }
 .hide {
@@ -477,7 +423,7 @@ textarea {
     position: fixed;
 }
 .show-hero-info {
-    background-color: var(--show-bg);
+    background-color: var(--dbg-whiter);
     padding: 16px 8px;
     width: 100%;
     max-width: 1000px;
@@ -488,7 +434,7 @@ textarea {
     transform: translateX(-50%);
 }
 .title-blue {
-    color: var(--blue);
+    color: var(--primary);
 }
 .comment-body {
     background-color: var(--dbg-whiter);
@@ -497,7 +443,7 @@ textarea {
 }
 .comment-user-profile {
     border-radius: 50%;
-    background-color: var(--blue);
+    background-color: var(--primary);
     height: 48px;
     aspect-ratio: 1 / 1;
     margin-right: 8px;
@@ -534,5 +480,5 @@ textarea {
     grid-template-columns: repeat(5, 20%);
 }
 .choosen {
-    border: 4px solid var(--green);
+    border: 4px solid var(--success);
 }

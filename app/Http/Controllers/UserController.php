@@ -18,10 +18,9 @@ class UserController extends Controller
             "email" => "required|email|unique:users,email,$user->id,id",
         ]);
         $user = User::find($request->user()->id);
-        $user->name !== $request->name && $user->name = $request->name;;
+        $user->name !== $request->name && $user->name = $request->name;
         $user->username !== $request->username && $user->username = $request->username;
         $user->email !== $request->email && $user->email = $request->email;
-        $user->profile !== $request->profile &&  $user->profile = $request->profile;
         $user->update();
         return back();
     }

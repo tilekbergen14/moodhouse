@@ -7,26 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
-    <title>Moodhouse | Change your mood with us!</title>
+    <title>WatchShop | Ең үздік сағаттар!</title>
 </head>
-<style>
-    #canvas1 {
-        position: absolute;
-        height: 100%;
-        top: 0;
-        filter: blur(16px);
-        background-color: #080f24;
-        width: 100%;
-        z-index: -1;
-    }
-
-</style>
 
 <body>
-
     @yield('content')
     <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('app.js') }}"></script>
 </body>
 
 </html>

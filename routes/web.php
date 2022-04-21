@@ -8,7 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
-use App\Http\Controllers\ShowController;
+use App\Http\Controllers\WatchController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,34 +19,25 @@ Route::post('/login', [LoginController::class, "store"]);
 Route::get('/register', [RegisterController::class, "index"])->name("register");
 Route::post('/register', [RegisterController::class, "store"]);
 
-Route::get('/admin', [AdminController::class, "shows"])->name("admin");
-Route::get('/admin/createshow', [AdminController::class, "createshowget"])->name("createshow");
-Route::post('/admin/createshow', [AdminController::class, "createshowpost"])->name("createshow");
+Route::get('/admin', [AdminController::class, "index"])->name("admin");
+Route::get('/admin/createwatch', [AdminController::class, "createwatchget"])->name("createwatch");
+Route::post('/admin/createwatch', [AdminController::class, "createwatchpost"])->name("createwatch");
+Route::delete('/admin/deletewatch/{id}', [AdminController::class, "deletewatch"])->name("deletewatch");
 
-
-Route::get('/admin/episodes', [EpisodeController::class, "index"])->name("episodes");
-Route::get('/admin/createepisode', [EpisodeController::class, "createep_get"])->name("createepisode");
-Route::post('/admin/createepisode', [EpisodeController::class, "createep_post"])->name("createepisode");
-Route::delete('/admin/episodes/{id}', [EpisodeController::class, "delete"])->name("episode_delete");
-
-Route::get('/admin/shows', [AdminController::class, "shows"])->name("admin-shows");
 Route::get('/admin/users', [AdminController::class, "users"])->name("users");
-
 Route::delete('/admin/deleteuser/{user}', [AdminController::class, "deleteUser"])->name("deleteUser");
 Route::post('/admin/makeadmin/{user}', [AdminController::class, "makeAdmin"])->name("makeAdmin");
-
 
 Route::get('/dashboard', [DashboardController::class, "index"])->name("dashboard");
 
 Route::post('/logout', [LogoutController::class, "index"])->name("logout");
 
-Route::get('/show/{show}', [ShowController::class, "index"])->name("show");
-Route::delete('/show/{id}', [ShowController::class, "delete"]);
+Route::get('/watch/{watch}', [WatchController::class, "index"])->name("watch");
 
-Route::post('/comment/{show}', [CommentController::class, "store"])->name("comment");
+Route::post('/comment/{watch}', [CommentController::class, "store"])->name("comment");
 Route::delete('/comment/{comment}', [CommentController::class, "delete"]);
 
 Route::put('/user-update/{user}', [UserController::class, "update"])->name("user-update");
 
 Route::get('/', [HomeController::class, "index"])->name("home");
-// Route::post('/', [HomeController::class, "indexpost"]); About genres
+

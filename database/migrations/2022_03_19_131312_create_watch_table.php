@@ -13,9 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('genres', function (Blueprint $table) {
+        Schema::create('watches', function (Blueprint $table) {
             $table->id();
-            $table->string("genre");
+            $table->string('name');
+            $table->text("description")->nullable();
+            $table->string("released_year")->nullable();
+            $table->string("country")->nullable();
+            $table->string("type")->nullable();
+            $table->string("image")->nullable();
+            $table->timestamps();
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('genres');
+        Schema::dropIfExists('watches');
     }
 };

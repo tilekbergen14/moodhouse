@@ -5,7 +5,7 @@
         <img class="header-img" src="/images/static/movie.jpg" alt="">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">MoodHouse</a>
+                <a class="navbar-brand" href="/">WatchShop</a>
                 @auth
                     <form class="d-flex" action="{{ route('dashboard') }}" method="get">
                         <button style="z-index: 3" class="btn btn-primary" type="submit">{{ auth()->user()->name }}</button>
@@ -13,77 +13,66 @@
                 @endauth
                 @guest
                     <form class="d-flex" action="{{ route('login') }}" method="get">
-                        <button style="z-index: 3" class="btn btn-primary" type="submit">SIGN IN</button>
+                        <button style="z-index: 3" class="btn btn-primary" type="submit">КІРУ</button>
                     </form>
                 @endguest
 
             </div>
         </nav>
         <div class='welcome'>
-            @component('components.slider', ['contents' => $shows])
-            @endcomponent
+            <div class="welcome-text">
+                <h1>Әлемдегі ең керемет сағаттар!</h1>
+                <p>Қазақстандағы және әлемдегі ең керемет сағаттар, егер сағат керек болса бізге кел!</p>
+            </div>
         </div>
     </div>
     <div class="text-light hero py-4 px-2">
         <div class="left-side container">
-            <div class="d-flex justify-content-between align-items-center my-2">
-                <p class="title">LATEST SHOWS</p>
+            <div class="d-flex justify-content-between align-items-center">
+                <p class="title">СОҢҒЫ ТАУАРЛАР</p>
                 <a href="{{ route('home') }}">
-                    <p class="title">SEE MORE
+                    {{-- <p class="title">БАРЛЫҒЫН КӨРУ
                         <i class="fa-solid fa-angles-right"></i>
-                    </p>
+                    </p> --}}
                 </a>
             </div>
-            <div class="row m-0">
-                @if (session('episodes'))
-                    @foreach (session('episodes') as $episode)
-                        @component('components.card', ['content' => $episode])
-                            {{ $episode }}
-                        @endcomponent
-                    @endforeach
-                @else
-                    @foreach ($episodes as $episode)
-                        @component('components.card', ['content' => $episode])
-                            {{ $episode }}
-                        @endcomponent
-                    @endforeach
-                @endif
-            </div>
-            <div class="d-flex justify-content-center">
-                {{ $episodes->links() }}
-            </div>
-        </div>
-        {{-- <div class="right-side text-light">
-            <p class="title tablet-none">Filter</p>
-            <form class="filter-box" action="{{ route('home') }}" method="POST">
-                @csrf
-                <div class="d-flex">
-                    <div class="flex-fill">
-                        <p class="text-info mb-1">Genres</p>
-
-                        @foreach ($genres as $genre)
-                            <input type="checkbox" id="romance" value="{{ $genre->genre }}"
-                                @if (is_array(old('cgenres')) && in_array($genre->genre, old('cgenres'))) checked @endif name="cgenres[]">
-                            <label for="romance">{{ $genre->genre }}</label><br>
-                        @endforeach
+            <form action="{{ route('home') }}">
+                <div class="input-group mb-3">
+                    <input value="{{ $search ?? old('search') }}" type="text" name="search" class="form-control"
+                        placeholder="Іздеу" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">Іздеу</button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3 w-100">Filter</button>
             </form>
-        </div> --}}
+            <div class="row m-0">
+                @foreach ($watches as $watch)
+                    <a href="{{ route('watch', $watch) }}" class="col-12 col-sm-6 col-lg-3 p-1 cu-card">
+                        <div class="card" style="width: 100%">
+                            <img src="{{ $watch->image }}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $watch->name }}</h5>
+                                <p class="card-text">{{ $watch->price }} &#8376;</p>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+            <div class="d-flex justify-content-center">
+                {{ $watches->links() }}
+            </div>
+        </div>
     </div>
 
     <div class="footer border-top">
         <div class="container">
             <footer class="py-4">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">FAQ</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">News</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Contact</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Work</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Басты бет</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Сағаттар</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link text-light px-2">Байланыс</a></li>
                 </ul>
-                <p class="text-light m-0 text-center">© 2022 Moodhouse</p>
+                <p class="text-light m-0 text-center">© 2022 WatchShop</p>
             </footer>
         </div>
     </div>

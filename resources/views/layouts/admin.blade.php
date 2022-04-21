@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
-    <title>You are admin!</title>
+    <title>Админ!</title>
 </head>
 
 <body class='text-light'>
     <div style=" height: 78px">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid d-flex justify-content-between">
-                <a class="navbar-brand flex-1" href="/">MoodHouse</a>
+                <a class="navbar-brand flex-1" href="/">WatchShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -23,13 +23,11 @@
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('admin-shows') }}">Shows</a>
+                            <a class="nav-link" aria-current="page" href="{{ route('admin') }}">Сағаттар</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('users') }}">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('episodes') }}">Episodes</a>
+                            <a class="nav-link" aria-current="page"
+                                href="{{ route('users') }}">Пайдаланушылар</a>
                         </li>
                     </ul>
                 </div>

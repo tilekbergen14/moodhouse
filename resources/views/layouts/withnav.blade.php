@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app.css') }}">
-    <title>Dashboard</title>
+    <title>Жеке деректер</title>
 </head>
 
 <body>
     <div style=" height: 78px">
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
             <div class="container-fluid d-flex justify-content-between">
-                <a class="navbar-brand flex-1" href="{{ route('home') }}">MoodHouse</a>
+                <a class="navbar-brand flex-1" href="{{ route('home') }}">WatchShop</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -31,9 +31,10 @@
                         </li>
                         @endauth --}}
                         @auth
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-                            </li>
+                            <form class="d-flex" action="{{ route('dashboard') }}" method="get">
+                                <button style="z-index: 3" class="btn btn-primary"
+                                    type="submit">{{ auth()->user()->name }}</button>
+                            </form>
                         @endauth
                         @guest
                             <li class="nav-item">
